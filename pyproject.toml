@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "session-guard"
+version = "0.1.0"
+description = "Device identity & session management for Django: server-issued Device IDs + Google-like 'Your devices' sessions UI."
+authors = ["Hernan Chilabert <hchilabert@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/herchila/django-session-guard"
+repository = "https://github.com/herchila/django-session-guard"
+documentation = "https://github.com/herchila/django-session-guard#readme"
+keywords = ["django", "sessions", "security", "device", "oidc", "session-guard"]
+
+packages = [
+  { include = "session_guard" }
+]
+
+classifiers = [
+  "Framework :: Django",
+  "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django :: 5.0",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = ">=3.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-django = "^4.8.0"
+black = "^24.0.0"
+ruff = "^0.6.0"
+mypy = "^1.10.0"
+django-stubs = "^5.0.0"
+coverage = "^7.5.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

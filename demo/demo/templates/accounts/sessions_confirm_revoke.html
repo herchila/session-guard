@@ -1,0 +1,12 @@
+{% extends "accounts/base.html" %} {% block content %}
+<h1>Cerrar sesión</h1>
+<p>¿Seguro que querés cerrar esta sesión?</p>
+<p>
+    {{ session.device.platform_id }} / {{ session.device.ua_family }} ({{
+    session.last_active }})
+</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, cerrar</button>
+</form>
+{% endblock %}

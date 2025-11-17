@@ -1,0 +1,60 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-badge">SG</div>
+            <div class="logo-text">
+                <h1>Session Guard</h1>
+                <p>Device-aware session management</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-wrapper">
+        <div class="form-header">
+            <h2>Welcome back</h2>
+            <p>Sign in to your account to continue</p>
+        </div>
+
+        <form class="form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input 
+                    id="username"
+                    name="username"
+                    type="text"
+                    class="form-input"
+                    placeholder="Enter your username"
+                    required
+                />
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="form-input"
+                    placeholder="Enter your password"
+                    required
+                />
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Sign in</button>
+        </form>
+
+        <!-- Footer -->
+        <p class="form-footer">
+            By signing in, you agree to our Terms of Service
+        </p>
+    </div>
+</div>
+{% endblock %}
