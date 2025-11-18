@@ -1,4 +1,3 @@
-from posix import read
 from django.contrib import admin
 
 from .models import Device, DeviceSession

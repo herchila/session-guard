@@ -4,7 +4,6 @@ from session_guard.conf import get_setting
 from session_guard.helper import _decode_did, _mint_device_id, _get_signer
 
 
-
 class SessionGuardMiddleware(MiddlewareMixin):
     """
     Make sure each request has:

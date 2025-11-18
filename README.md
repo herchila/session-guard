@@ -1,6 +1,6 @@
 # Session Guard
 
-**Device-aware session management for Django.**  
+**Device-aware session management for Django.**
 Session Guard issues server-side Device IDs (DIDs), tracks active sessions per device, and exposes a simple “Your sessions” view so users can see and revoke their sessions (Google-style).
 
 > ⚠️ Status: Early alpha (v0.1). API may change.
@@ -207,6 +207,13 @@ Format and lint:
 ```bash
 poetry run black .
 poetry run ruff check .
+```
+
+Pre-commit hooks:
+
+```bash
+poetry run pre-commit install
+poetry run pre-commit run --all-files  # run hooks manually
 ```
 
 ## License
