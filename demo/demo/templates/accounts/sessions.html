@@ -357,10 +357,11 @@
                 >
                     {% if s.device.trusted %}✓ TRUSTED{% else %}⛌ UNTRUSTED{% endif %}
                 </span>
-                <form method="post" action="{% url 'sessions_revoke' s.id %}">
+                <a href="{% url 'sessions_revoke' s.id %}" class="end-btn">End session</a>
+                {% comment %} <form method="get" action="{% url 'sessions_revoke' s.id %}">
                     {% csrf_token %}
                     <button type="submit" class="end-btn" onclick="endSession(this)">End session</button>
-                </form>
+                </form> {% endcomment %}
             </div>
         </div>
     </div>

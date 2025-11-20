@@ -169,9 +169,15 @@
     <header>
         <div class="header-content">
             <div class="header-left">
-                <div class="header-logo">SG</div>
+                <div class="header-logo">
+                    <a href="{% url 'sessions_list' %}" style="text-decoration: none; color: inherit;">SG</a>
+                </div>
                 <div class="header-text">
-                    <h1>Session Guard</h1>
+                    <h1>
+                        <a href="{% url 'sessions_list' %}" style="text-decoration: none; color: inherit;">
+                            Session Guard Demo
+                        </a>
+                    </h1>
                     <p>Device-aware sessions</p>
                 </div>
             </div>

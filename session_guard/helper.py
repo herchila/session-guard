@@ -1,9 +1,10 @@
 import uuid
+
 from typing import Tuple
 
 from django.core.signing import Signer, BadSignature
 
-from .conf import get_setting
+from session_guard.conf import get_setting
 
 
 def _get_signer() -> Signer:
