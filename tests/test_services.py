@@ -6,7 +6,6 @@ from django.contrib.sessions.backends.db import SessionStore
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.contrib.sessions.models import Session
 from django.test import RequestFactory
-from django.utils import timezone
 
 from session_guard.models import Device, DeviceSession
 from session_guard.services import (
@@ -17,7 +16,9 @@ from session_guard.services import (
 )
 
 
-def _make_request(user_agent="Agent/1.0", remote_addr="203.0.113.10", did=None, trusted=False):
+def _make_request(
+    user_agent="Agent/1.0", remote_addr="203.0.113.10", did=None, trusted=False
+):
     factory = RequestFactory()
     request = factory.get("/", HTTP_USER_AGENT=user_agent, REMOTE_ADDR=remote_addr)
     SessionMiddleware(lambda req: None).process_request(request)
@@ -35,7 +36,9 @@ def test_mask_ip_returns_original_value():
 @pytest.mark.django_db
 def test_upsert_on_login_creates_device_and_session():
     user = get_user_model().objects.create_user(username="alice")
-    request = _make_request(remote_addr="198.51.100.9", did=str(uuid.uuid4()), trusted=True)
+    request = _make_request(
+        remote_addr="198.51.100.9", did=str(uuid.uuid4()), trusted=True
+    )
 
     device, device_session = upsert_on_login(request, user)
 
@@ -58,13 +61,17 @@ def test_upsert_on_login_creates_device_and_session():
 def test_upsert_on_login_updates_existing_device_and_deactivates_previous_session():
     user = get_user_model().objects.create_user(username="bob")
     did = str(uuid.uuid4())
-    request1 = _make_request(user_agent="FirstAgent", remote_addr="203.0.113.1", did=did)
+    request1 = _make_request(
+        user_agent="FirstAgent", remote_addr="203.0.113.1", did=did
+    )
 
     device, first_session = upsert_on_login(request1, user)
     initial_last_seen = device.last_seen
 
     long_agent = "Mozilla/" + ("X" * 200)
-    request2 = _make_request(user_agent=long_agent, remote_addr="203.0.113.2", did=did, trusted=True)
+    request2 = _make_request(
+        user_agent=long_agent, remote_addr="203.0.113.2", did=did, trusted=True
+    )
     device, second_session = upsert_on_login(request2, user)
 
     device.refresh_from_db()
@@ -88,14 +95,19 @@ def test_revoke_session_deactivates_and_deletes_server_session():
     _, device_session = upsert_on_login(request, user)
     original_last_active = device_session.last_active
 
-    assert Session.objects.filter(session_key=device_session.server_session_key).exists()
+    assert Session.objects.filter(
+        session_key=device_session.server_session_key
+    ).exists()
 
     revoke_session(user, device_session)
 
     device_session.refresh_from_db()
     assert device_session.is_active is False
     assert device_session.last_active > original_last_active
-    assert Session.objects.filter(session_key=device_session.server_session_key).exists() is False
+    assert (
+        Session.objects.filter(session_key=device_session.server_session_key).exists()
+        is False
+    )
 
 
 @pytest.mark.django_db
@@ -110,7 +122,9 @@ def test_revoke_session_raises_for_other_user():
 
     device_session.refresh_from_db()
     assert device_session.is_active is True
-    assert Session.objects.filter(session_key=device_session.server_session_key).exists()
+    assert Session.objects.filter(
+        session_key=device_session.server_session_key
+    ).exists()
 
 
 @pytest.mark.django_db
@@ -154,4 +168,6 @@ def test_revoke_all_except_current_closes_other_active_sessions():
     assert Session.objects.filter(session_key=store2.session_key).exists() is False
 
     assert current_session.is_active is True
-    assert Session.objects.filter(session_key=current_request.session.session_key).exists()
+    assert Session.objects.filter(
+        session_key=current_request.session.session_key
+    ).exists()
