@@ -1,5 +1,9 @@
 # Session Guard
 
+[![Tests](https://github.com/herchila/session-guard/actions/workflows/tests.yml/badge.svg)](https://github.com/herchila/session-guard/actions/workflows/tests.yml)
+[![Pre-commit](https://github.com/herchila/session-guard/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/herchila/session-guard/actions/workflows/pre-commit.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Device-aware session management for Django.**
 Session Guard issues server-side Device IDs (DIDs), tracks active sessions per device, and exposes a simple “Your sessions” view so users can see and revoke their sessions (Google-style).
 
