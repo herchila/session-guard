@@ -12,11 +12,11 @@ def main():
     from django.conf import settings
 
     if settings.DEBUG:
-        if os.environ.get('RUN_MAIN') or os.environ.get('WERKZEUG_RUN_MAIN'):
+        if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
             import debugpy
 
             debugpy.listen(("0.0.0.0", 9000))
-            print('Attached!')
+            print("Attached!")
     # end debugpy
 
     try:
