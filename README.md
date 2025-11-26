@@ -1,9 +1,5 @@
 # Session Guard
 
-[![Tests](https://github.com/herchila/session-guard/actions/workflows/tests.yml/badge.svg)](https://github.com/herchila/session-guard/actions/workflows/tests.yml)
-[![Pre-commit](https://github.com/herchila/session-guard/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/herchila/session-guard/actions/workflows/pre-commit.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
 **Device-aware session management for Django.**
 Session Guard issues server-side Device IDs (DIDs), tracks active sessions per device, and exposes a simple “Your sessions” view so users can see and revoke their sessions (Google-style).
 
@@ -191,7 +187,35 @@ def on_user_logged_in(sender, request, user, **kwargs):
     upsert_on_login(request, user)
 ```
 
-### 5. Expose a “Your sessions” view like the demo:
+### 5. Register the signals in your app’s `apps.py`:
+
+```python# your_app/apps.py
+from django.apps import AppConfig
+class YourAppConfig(AppConfig):
+    name = 'your_app'
+
+    def ready(self):
+        import your_app.signals  # noqa
+```
+
+### 6. Add the models to your admin:
+
+```python
+# your_app/admin.py
+from django.contrib import admin
+from django.apps import apps
+
+
+app_models = apps.get_app_config('session_guard').get_models()
+
+for model in app_models:
+    try:
+        admin.site.register(model)
+    except admin.sites.AlreadyRegistered:
+        pass
+```
+
+### 7. Expose a “Your sessions” view like the demo:
 
 * Query `DeviceSession.objects.filter(user=request.user, is_active=True)`.
 * Render them in a template with an **End session** button that calls session_guard.services.revoke_session.

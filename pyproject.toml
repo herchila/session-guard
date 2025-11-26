@@ -44,6 +44,7 @@ mypy = "^1.10.0"
 django-stubs = "^5.0.0"
 coverage = "^7.5.0"
 pre-commit = "^4.4.0"
+debugpy = "^1.8.17"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.settings"
