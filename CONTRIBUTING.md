@@ -1,6 +1,6 @@
 # Contributing to Session Guard
 
-Thanks for your interest in contributing to **Session Guard**! 🎉  
+Thanks for your interest in contributing to **Session Guard**! 🎉
 This project aims to be a world‑class, production‑ready Django package for device‑aware session management.
 
 ## 1. Ways to contribute
@@ -14,7 +14,7 @@ Before starting a larger change, consider opening a GitHub issue or discussion t
 
 ## 2. Code of conduct
 
-Please be respectful, constructive and inclusive. Treat other contributors the way you’d like to be treated.  
+Please be respectful, constructive and inclusive. Treat other contributors the way you'd like to be treated.
 Harassment, personal attacks or discriminatory behaviour are not welcome.
 
 ## 3. Local development setup
@@ -28,7 +28,7 @@ cd session-guard
 
 ### 3.2. Install dependencies (Poetry)
 
-If you don’t have Poetry:
+If you don't have Poetry:
 
 ```bash
 pip install poetry
@@ -73,7 +73,7 @@ Then open `http://127.0.0.1:8000/account/sessions/` after logging in to see the 
 
 ## 4. Code style & quality checks
 
-We use **black**, **ruff**, **mypy** and **pytest**.  
+We use **black**, **ruff**, **mypy** and **pytest**.
 All of them can be run via **pre‑commit** or individually:
 
 ```bash
@@ -102,7 +102,7 @@ Please make sure all checks pass before opening a PR.
 - Update documentation (README, examples, changelog) when appropriate.
 - In the PR description, explain:
   - What you changed.
-  - Why it’s needed.
+  - Why it's needed.
   - How you tested it (manual + automated).
 
 ## 6. Versioning
@@ -118,5 +118,5 @@ Changes should be reflected in `CHANGELOG.md`.
 
 ## 7. Questions?
 
-If you’re unsure how to implement something or where a feature belongs, open an issue or discussion on GitHub.  
+If you're unsure how to implement something or where a feature belongs, open an issue or discussion on GitHub.
 We want this to be a welcoming project for both new and experienced contributors.
